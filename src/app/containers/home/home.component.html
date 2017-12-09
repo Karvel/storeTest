@@ -1,0 +1,45 @@
+<nav>
+  <a routerLink="/"  >home</a>
+  <a routerLink="/dashboard"  >dash</a>
+  <a routerLink="/dashboard/test"  >test</a>
+  <a routerLink="/dashboard/test" [queryParams]="{page: 99}"  >99</a>
+  <a routerLink="/dashboard/test" [queryParams]="{page: 95}"  >95</a>
+</nav>
+
+{{ counter | async}}
+
+{{ user| async | json}}
+<br>
+<pre>
+  {{ routerState | async | json}}
+</pre>
+
+
+<div >
+
+  <div *ngIf="(user | async)?.name">user name is: {{(user | async)?.name}}</div>
+  <div *ngIf="!(user | async)?.name">user does not have name yet</div>
+</div>
+
+<input type="text" [(ngModel)]="name" (keyup)="updateUserName($event)">
+
+
+<input type="text" [(ngModel)]="route" (keyup)="routerGo($event)">
+
+
+<h1 *ngIf="(routerState | async)?.to?.url">Loading</h1>
+
+<div>
+  <button (click)="increment()">^</button>
+  <div>
+  </div>
+  <div>
+    <button (click)="decrement()">v</button>
+  </div>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+
+
